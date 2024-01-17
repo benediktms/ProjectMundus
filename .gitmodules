@@ -1,0 +1,3 @@
+[submodule "Content/ProjectMundusPropriatary"]
+	path = Content/ProjectMundusPropriatary
+	url = git@github.com:benediktms/ProjectMundusPropriatary.git
