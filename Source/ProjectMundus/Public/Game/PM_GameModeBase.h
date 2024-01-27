@@ -6,9 +6,6 @@
 #include "GameFramework/GameModeBase.h"
 #include "PM_GameModeBase.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class PROJECTMUNDUS_API APM_GameModeBase : public AGameModeBase
 {
