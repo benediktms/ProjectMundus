@@ -5,7 +5,6 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "GameFramework/Character.h"
-#include "GameFramework/CharacterMovementComponent.h"
 
 void APM_PlayerController::BeginPlay()
 {
@@ -15,10 +14,10 @@ void APM_PlayerController::BeginPlay()
 
 	TObjectPtr<UEnhancedInputLocalPlayerSubsystem> Subsystem = ULocalPlayer::GetSubsystem<
 		UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-
 	check(Subsystem);
-
 	Subsystem->AddMappingContext(InputContext, 0);
+
+	MovementSpeed = FMath::Clamp(MovementSpeed, 0.0f, 1.0f);
 }
 
 void APM_PlayerController::Tick(float DeltaSeconds)
@@ -54,8 +53,8 @@ void APM_PlayerController::Move(const FInputActionValue& Value)
 
 	if (TObjectPtr<APawn> ControlledPawn = GetPawn<APawn>())
 	{
-		ControlledPawn->AddMovementInput(ForwardVector, MoveVector.Y);
-		ControlledPawn->AddMovementInput(RightVector, MoveVector.X);
+		ControlledPawn->AddMovementInput(ForwardVector, MoveVector.Y * MovementSpeed);
+		ControlledPawn->AddMovementInput(RightVector, MoveVector.X * MovementSpeed);
 	}
 }
 

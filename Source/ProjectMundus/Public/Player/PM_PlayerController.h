@@ -45,4 +45,7 @@ private:
 public:
 	bool bIsTurningLeft = false;
 	bool bIsTurningRight = false;
+
+	UPROPERTY(EditAnywhere)
+	float MovementSpeed = 0.7f;
 };
